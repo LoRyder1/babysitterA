@@ -1,3 +1,5 @@
+BEDTIME = 22
+
 class BabySit
   def initialize start, endtime
     @start, @endtime = start, endtime
