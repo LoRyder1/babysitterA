@@ -20,11 +20,11 @@ class CalculateHours
     @start, @endtime = start, endtime
   end
 
-  def to_bedtime
+  def early_hours
     BEDTIME - @start
   end
 
-  def to_midnight
+  def mid_hours
     MIDNIGHT - BEDTIME
   end
 end

@@ -37,18 +37,26 @@ describe 'CalculateHours' do
     expect(subject.method(:initialize).arity).to eq 2
   end
 
-  describe '#to_bedtime' do
+  describe '#early_hours' do
 
     it 'calculates hours to bedtime' do
       set_var "@start", 17
-      expect(subject.to_bedtime).to eq 5
+      expect(subject.early_hours).to eq 5
     end
   end
 
-  describe '#to_midnight' do
+  describe '#mid_hours' do
 
     it 'calculates bedtime to midnight' do
-      expect(subject.to_midnight).to eq 2
+      expect(subject.mid_hours).to eq 2
+    end
+  end
+
+  describe '#end_hours' do
+
+    it 'calculates midnight to end' do
+      set_var "@endtime", 28
+      expect(subject.end_hours).to eq 4
     end
   end
 end
