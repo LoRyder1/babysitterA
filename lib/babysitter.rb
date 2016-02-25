@@ -1,4 +1,5 @@
 BEDTIME = 22
+MIDNIGHT = 24
 
 class BabySit
   def initialize start, endtime
@@ -23,5 +24,7 @@ class CalculateHours
     BEDTIME - @start
   end
 
-
+  def to_midnight
+    MIDNIGHT - BEDTIME
+  end
 end
