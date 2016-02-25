@@ -19,17 +19,17 @@ describe 'BabySit' do
   describe '#valid_schedule' do
 
     it 'invalid schedule earlier than 5pm' do
-      set_var "@start", 16; set_var "@endtime", 22
+      set_var '@start', 16; set_var '@endtime', 22
       expect(subject.valid_schedule?).to eq false
     end
 
     it 'invalid schedule if leave is later than 4am' do
-      set_var "@start", 17; set_var "@endtime", 29
+      set_var '@start', 17; set_var '@endtime', 29
       expect(subject.valid_schedule?).to eq false
     end
 
     it 'valid schedule is between 17 and 28' do
-      set_var "@start", 17; set_var "@endtime", 28
+      set_var '@start', 17; set_var '@endtime', 28
       expect(subject.valid_schedule?).to eq true
     end
   end
@@ -37,7 +37,7 @@ describe 'BabySit' do
   describe '#standard_rate_pay' do
 
     it 'calculate pay at standard rate' do
-      set_var_hours "early_hours", 5
+      set_var_hours 'early_hours', 5
       expect(subject.standard_rate_pay).to eq 60
     end
   end
@@ -45,8 +45,16 @@ describe 'BabySit' do
   describe '#mid_rate_pay' do
 
     it 'calculates pay at mid rate' do
-      set_var_hours "mid_hours", 2
+      set_var_hours 'mid_hours', 2
       expect(subject.mid_rate_pay).to eq 16
+    end
+  end
+
+  describe '#end_rate_pay' do
+
+    it 'calculates pay at end rate' do
+      set_var_hours 'end_hours', 4
+      expect(subject.end_rate_pay).to eq 64
     end
   end
 end
@@ -62,7 +70,7 @@ describe 'CalculateHours' do
   describe '#early_hours' do
 
     it 'calculates hours to bedtime' do
-      set_var "@start", 17
+      set_var '@start', 17
       expect(subject.early_hours).to eq 5
     end
   end
@@ -77,7 +85,7 @@ describe 'CalculateHours' do
   describe '#end_hours' do
 
     it 'calculates midnight to end' do
-      set_var "@endtime", 28
+      set_var '@endtime', 28
       expect(subject.end_hours).to eq 4
     end
   end
