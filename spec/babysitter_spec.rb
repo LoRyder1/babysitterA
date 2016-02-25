@@ -28,12 +28,14 @@ describe 'BabySit' do
     end
   end
 
-  describe '#standard_rate' do
-    let(:hours) {double 'hours'}
+  describe '#standard_rate_pay' do
+    def set_var_hours method, value
+      allow_any_instance_of(CalculateHours).to receive(method.to_sym).and_return value 
+    end
 
     it 'calculate pay at standard rate' do
-      allow(hours).to receive(:early_hours).and_return(5)
-      expect(subject.standard_rate).to eq 60
+      set_var_hours "early_hours", 5
+      expect(subject.standard_rate_pay).to eq 60
     end
   end
 end

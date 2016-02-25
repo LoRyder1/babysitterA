@@ -4,6 +4,7 @@ MIDNIGHT = 24
 class BabySit
   def initialize start, endtime
     @start, @endtime = start, endtime
+    @hours = CalculateHours.new(start, endtime)
   end
 
   def valid_schedule?
@@ -12,6 +13,10 @@ class BabySit
     else
       true
     end
+  end
+
+  def standard_rate_pay
+    12 * @hours.early_hours
   end
 end
 
