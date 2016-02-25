@@ -13,3 +13,15 @@ class BabySit
     end
   end
 end
+
+class CalculateHours
+  def initialize start, endtime
+    @start, @endtime = start, endtime
+  end
+
+  def to_bedtime
+    BEDTIME - @start
+  end
+
+
+end

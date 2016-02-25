@@ -1,13 +1,13 @@
+def set_var var, value
+  subject.instance_variable_set(var.to_sym, value)
+end
+
 describe 'BabySit' do
   let(:hour) {double('hour')}
   subject {BabySit.new(hour, hour)}
 
   it 'expect 2 arguments' do
     expect(subject.method(:initialize).arity).to eq 2
-  end
-
-  def set_var var, value
-    subject.instance_variable_set(var.to_sym, value)
   end
 
   describe '#valid_schedule' do
@@ -35,5 +35,20 @@ describe 'CalculateHours' do
 
   it 'expect two arguments' do
     expect(subject.method(:initialize).arity).to eq 2
+  end
+
+  describe '#to_bedtime' do
+
+    it 'calculates hours to bedtime' do
+      set_var "@start", 17
+      expect(subject.to_bedtime).to eq 5
+    end
+  end
+
+  describe '#to_midnight' do
+
+    it 'calculates bedtime to midnight' do
+      expect(subject.to_midnight).to eq 2
+    end
   end
 end
