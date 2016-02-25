@@ -38,7 +38,7 @@ describe 'BabySit' do
 
     it 'calculate pay at standard rate' do
       set_obj_var CalculateHours, 'early_hours', 5
-      expect(subject.standard_rate_pay).to eq 60
+      expect(subject.send(:standard_rate_pay)).to eq 60
     end
   end
 
@@ -46,7 +46,7 @@ describe 'BabySit' do
 
     it 'calculates pay at mid rate' do
       set_obj_var CalculateHours, 'mid_hours', 2
-      expect(subject.mid_rate_pay).to eq 16
+      expect(subject.send(:mid_rate_pay)).to eq 16
     end
   end
 
@@ -54,7 +54,7 @@ describe 'BabySit' do
 
     it 'calculates pay at end rate' do
       set_obj_var CalculateHours, 'end_hours', 4
-      expect(subject.end_rate_pay).to eq 64
+      expect(subject.send(:end_rate_pay)).to eq 64
     end
   end
 
@@ -63,7 +63,7 @@ describe 'BabySit' do
     def set_diff_pay x, y, z
       allow(subject).to receive_messages(standard_rate_pay: x, mid_rate_pay: y, end_rate_pay: z)
     end
-    
+
     it 'calculate total pay' do
       set_diff_pay 60, 16, 64
       expect(subject.calculate_pay).to eq 140
