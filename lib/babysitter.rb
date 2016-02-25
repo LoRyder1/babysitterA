@@ -1,5 +1,8 @@
 BEDTIME = 22
 MIDNIGHT = 24
+STAND_RATE = 12
+MID_RATE = 8
+END_RATE = 16
 
 class BabySit
   def initialize start, endtime
@@ -16,11 +19,15 @@ class BabySit
   end
 
   def standard_rate_pay
-    12 * @hours.early_hours
+    STAND_RATE * @hours.early_hours
   end
 
   def mid_rate_pay
-    8 * @hours.mid_hours
+    MID_RATE * @hours.mid_hours
+  end
+
+  def end_rate_pay
+    END_RATE * @hours.end_hours
   end
 end
 

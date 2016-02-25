@@ -3,5 +3,5 @@ Given(/^I babysit from (\d+) to (\d+)/) do |start, endtime|
 end
 
 Then(/^I get paid (\d+)/) do |amount|
-  expect(@sitting.calculate_pay).to eq 108
+  expect(@sitting.calculate_pay).to eq 140
 end

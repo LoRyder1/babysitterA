@@ -8,8 +8,8 @@ describe 'BabySit' do
   let(:hour) {double 'hour'}
   subject {BabySit.new(hour, hour)}
 
-  def set_var_hours method, value
-    allow_any_instance_of(CalculateHours).to receive(method.to_sym).and_return value 
+  def set_obj_var classname, method, value
+    allow_any_instance_of(classname).to receive(method.to_sym).and_return value 
   end
 
   it 'expect 2 arguments' do
@@ -37,7 +37,7 @@ describe 'BabySit' do
   describe '#standard_rate_pay' do
 
     it 'calculate pay at standard rate' do
-      set_var_hours 'early_hours', 5
+      set_obj_var CalculateHours, 'early_hours', 5
       expect(subject.standard_rate_pay).to eq 60
     end
   end
@@ -45,7 +45,7 @@ describe 'BabySit' do
   describe '#mid_rate_pay' do
 
     it 'calculates pay at mid rate' do
-      set_var_hours 'mid_hours', 2
+      set_obj_var CalculateHours, 'mid_hours', 2
       expect(subject.mid_rate_pay).to eq 16
     end
   end
@@ -53,8 +53,18 @@ describe 'BabySit' do
   describe '#end_rate_pay' do
 
     it 'calculates pay at end rate' do
-      set_var_hours 'end_hours', 4
+      set_obj_var CalculateHours, 'end_hours', 4
       expect(subject.end_rate_pay).to eq 64
+    end
+  end
+
+  describe '#calculate_pay' do
+
+    it 'calculate total pay' do
+      set_obj_var BabySit, 'standard_rate_pay', 60
+      set_obj_var BabySit, 'mid_rate_pay', 16
+      set_obj_var BabySit, 'end_rate_pay', 64
+      expect(subject.calculate_pay).to eq 140
     end
   end
 end
