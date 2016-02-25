@@ -60,10 +60,12 @@ describe 'BabySit' do
 
   describe '#calculate_pay' do
 
+    def set_diff_pay x, y, z
+      allow(subject).to receive_messages(standard_rate_pay: x, mid_rate_pay: y, end_rate_pay: z)
+    end
+    
     it 'calculate total pay' do
-      set_obj_var BabySit, 'standard_rate_pay', 60
-      set_obj_var BabySit, 'mid_rate_pay', 16
-      set_obj_var BabySit, 'end_rate_pay', 64
+      set_diff_pay 60, 16, 64
       expect(subject.calculate_pay).to eq 140
     end
   end
