@@ -3,5 +3,11 @@ class BabySit
     @start, @endtime = start, endtime
   end
 
-  
+  def valid_schedule?
+    if @start < 17 || @endtime > 28
+      false
+    else
+      true
+    end
+  end
 end
