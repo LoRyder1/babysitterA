@@ -18,6 +18,10 @@ class BabySit
   def standard_rate_pay
     12 * @hours.early_hours
   end
+
+  def mid_rate_pay
+    8 * @hours.mid_hours
+  end
 end
 
 class CalculateHours
