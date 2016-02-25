@@ -108,8 +108,13 @@ describe 'CalculateHours' do
     end
 
     it 'rounds start to nearest hour' do
-      set_var '@start', 12.4; subject.round_hours
+      set_var '@start', 12.4; set_var '@endtime', 0; subject.round_hours
       expect(get_var '@start').to eq 12
     end 
+
+    it 'rounds endtime to nearest hour' do
+      set_var '@endtime', 18.7; set_var '@start', 0; subject.round_hours
+      expect(get_var '@endtime').to eq 19
+    end
   end
 end

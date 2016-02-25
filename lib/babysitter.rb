@@ -41,6 +41,11 @@ class CalculateHours
     @start, @endtime = start, endtime
   end
 
+  def round_hours
+    @start = @start.round
+    @endtime = @endtime.round
+  end
+
   def early_hours
     BEDTIME - @start
   end
