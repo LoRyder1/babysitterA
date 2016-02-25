@@ -101,4 +101,15 @@ describe 'CalculateHours' do
       expect(subject.end_hours).to eq 4
     end
   end
+
+  describe '#round_hours' do
+    def get_var var
+      subject.instance_variable_get(var.to_sym)
+    end
+
+    it 'rounds start to nearest hour' do
+      set_var '@start', 12.4; subject.round_hours
+      expect(get_var '@start').to eq 12
+    end 
+  end
 end
