@@ -3,7 +3,7 @@ def set_var var, value
 end
 
 describe 'BabySit' do
-  let(:hour) {double('hour')}
+  let(:hour) {double 'hour'}
   subject {BabySit.new(hour, hour)}
 
   it 'expect 2 arguments' do
@@ -25,6 +25,15 @@ describe 'BabySit' do
     it 'valid schedule is between 17 and 28' do
       set_var "@start", 17; set_var "@endtime", 28
       expect(subject.valid_schedule?).to eq true
+    end
+  end
+
+  describe '#standard_rate' do
+    let(:hours) {double 'hours'}
+
+    it 'calculate pay at standard rate' do
+      allow(hours).to receive(:early_hours).and_return(5)
+      expect(subject.standard_rate).to eq 60
     end
   end
 end
