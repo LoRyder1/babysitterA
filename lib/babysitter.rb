@@ -27,4 +27,8 @@ class CalculateHours
   def mid_hours
     MIDNIGHT - BEDTIME
   end
+
+  def end_hours
+    @endtime - MIDNIGHT
+  end
 end
