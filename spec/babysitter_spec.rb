@@ -2,9 +2,15 @@ def set_var var, value
   subject.instance_variable_set(var.to_sym, value)
 end
 
+
+
 describe 'BabySit' do
   let(:hour) {double 'hour'}
   subject {BabySit.new(hour, hour)}
+
+  def set_var_hours method, value
+    allow_any_instance_of(CalculateHours).to receive(method.to_sym).and_return value 
+  end
 
   it 'expect 2 arguments' do
     expect(subject.method(:initialize).arity).to eq 2
@@ -29,13 +35,18 @@ describe 'BabySit' do
   end
 
   describe '#standard_rate_pay' do
-    def set_var_hours method, value
-      allow_any_instance_of(CalculateHours).to receive(method.to_sym).and_return value 
-    end
 
     it 'calculate pay at standard rate' do
       set_var_hours "early_hours", 5
       expect(subject.standard_rate_pay).to eq 60
+    end
+  end
+
+  describe '#mid_rate_pay' do
+
+    it 'calculates pay at mid rate' do
+      set_var_hours "mid_hours", 2
+      expect(subject.mid_rate_pay).to eq 16
     end
   end
 end
