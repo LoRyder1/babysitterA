@@ -2,6 +2,10 @@ def set_var var, value
   subject.instance_variable_set(var.to_sym, value)
 end
 
+def get_var var
+  subject.instance_variable_get(var.to_sym)
+end
+
 describe 'BabySit' do
   let(:hour) {double 'hour'}
   subject {BabySit.new(hour, hour)}
@@ -110,9 +114,6 @@ describe 'CalculateHours' do
   end
 
   describe '#round_hours' do
-    def get_var var
-      subject.instance_variable_get(var.to_sym)
-    end
 
     it 'rounds start to nearest hour' do
       set_var '@start', 12.4; set_var '@endtime', 0; subject.round_hours
