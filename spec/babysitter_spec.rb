@@ -6,6 +6,10 @@ def get_var var
   subject.instance_variable_get(var.to_sym)
 end
 
+def get_var_from_hours var
+  get_var('@hours').instance_variable_get(var.to_sym)
+end
+
 describe 'BabySit' do
   let(:hour) {double 'hour'}
   subject {BabySit.new(hour, hour)}
@@ -75,9 +79,14 @@ describe 'BabySit' do
   describe '#round_hours' do
     subject {BabySit.new(17.6, 22.4)}
 
-    it 'round hours for calculating pay' do
+    it 'round hours for calculating pay; start' do
       subject.round_hours
-      expect(get_var '@hour.start').to eq 18
+      expect(get_var_from_hours '@start').to eq 18
+    end
+
+    it 'round hours for calculating pay; endtime' do
+      subject.round_hours
+      expect(get_var_from_hours '@endtime').to eq 22
     end
   end
 end
