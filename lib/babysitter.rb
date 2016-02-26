@@ -18,12 +18,12 @@ class BabySit
     end
   end
 
-  def calculate_pay
-    standard_rate_pay + mid_rate_pay + end_rate_pay
-  end
-
   def round_hours
     @hours.round_hours
+  end
+
+  def calculate_pay
+    standard_rate_pay + mid_rate_pay + end_rate_pay
   end
 
   private
