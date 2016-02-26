@@ -2,8 +2,6 @@ def set_var var, value
   subject.instance_variable_set(var.to_sym, value)
 end
 
-
-
 describe 'BabySit' do
   let(:hour) {double 'hour'}
   subject {BabySit.new(hour, hour)}
@@ -67,6 +65,15 @@ describe 'BabySit' do
     it 'calculate total pay' do
       set_diff_pay 60, 16, 64
       expect(subject.calculate_pay).to eq 140
+    end
+  end
+
+  describe '#round_hours' do
+    subject {BabySit.new(17.6, 22.4)}
+
+    it 'round hours for calculating pay' do
+      subject.round_hours
+      expect(get_var '@hour.start').to eq 18
     end
   end
 end
