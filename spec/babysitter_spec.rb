@@ -96,7 +96,6 @@ describe 'RatePay' do
 
   describe '#standard_rate' do
     it 'calculates pay at standard rate' do
-      # allow(hours).to receive(:early_hours).and_return 5
       set_hours "early_hours", 5
       expect(subject.standard_rate).to eq 60
     end
@@ -104,8 +103,15 @@ describe 'RatePay' do
 
   describe '#mid_rate' do
     it 'calculates pay at mid rate' do
-      allow(hours).to receive(:mid_hours).and_return 2
+      set_hours "mid_hours", 2
       expect(subject.mid_rate).to eq 16
+    end
+  end
+
+  describe '#overnight_rate' do
+    it 'calculates pay at overnight rate' do
+      set_hours "overnight_hours", 4
+      expect(subject.overnight_rate).to eq 64
     end
   end
 end
