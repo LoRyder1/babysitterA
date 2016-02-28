@@ -5,10 +5,10 @@ MID_RATE = 8
 END_RATE = 16
 
 class BabySit
-  # attr_reader :start, :endtime
   def initialize start, endtime
     @start, @endtime = start, endtime
     @hours = CalculateHours.new(start, endtime)
+    @ratepay = RatePay.new(@hours)
   end
 
   def valid_schedule?
@@ -24,20 +24,25 @@ class BabySit
   end
 
   def calculate_pay
-    standard_rate_pay + mid_rate_pay + end_rate_pay
+    @ratepay.standard + @ratepay.mid_rate + @ratepay.overnight_rate
+  end
+end
+
+class RatePay
+  def initialize hours
+    @hours = hours
   end
 
-  private
-  def standard_rate_pay
+  def standard
     STAND_RATE * @hours.early_hours
   end
 
-  def mid_rate_pay
+  def mid_rate
     MID_RATE * @hours.mid_hours
   end
 
-  def end_rate_pay
-    END_RATE * @hours.end_hours
+  def overnight_rate
+    END_RATE * @hours.overnight_hours
   end
 end
 
@@ -59,7 +64,7 @@ class CalculateHours
     MIDNIGHT - BEDTIME
   end
 
-  def end_hours
+  def overnight_hours
     @endtime - MIDNIGHT
   end
 end

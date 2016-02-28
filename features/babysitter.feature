@@ -6,6 +6,6 @@ I want to calculate my nightly charge
   Given I babysit from 17 to 28
   Then I get paid 140
 
-  Scenario: Calculate pay and for full fractional hours
+  Scenario: Calculate pay only for full fractional hours
   Given I babysit from 17.5 to 27.3
   Then I get paid 112
