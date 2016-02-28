@@ -25,7 +25,7 @@ class BabySit
   end
 
   def calculate_pay
-    @ratepay.standard + @ratepay.mid_rate + @ratepay.overnight_rate
+    @ratepay.standard_rate + @ratepay.mid_rate + @ratepay.overnight_rate
   end
 end
 
@@ -34,7 +34,7 @@ class RatePay
     @hours = hours
   end
 
-  def standard
+  def standard_rate
     STAND_RATE * @hours.early_hours
   end
 

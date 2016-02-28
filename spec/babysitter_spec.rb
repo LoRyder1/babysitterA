@@ -82,6 +82,34 @@ describe 'BabySit' do
   end
 end
 
+describe 'RatePay' do
+  let(:hours) {double 'hours'}
+  subject {RatePay.new(hours)}
+
+  def set_hours method, value
+    allow(hours).to receive(method.to_sym).and_return(value)
+  end
+
+  it 'takes in 1 argument' do
+    expect(subject.method(:initialize).arity).to eq 1
+  end
+
+  describe '#standard_rate' do
+    it 'calculates pay at standard rate' do
+      # allow(hours).to receive(:early_hours).and_return 5
+      set_hours "early_hours", 5
+      expect(subject.standard_rate).to eq 60
+    end
+  end
+
+  describe '#mid_rate' do
+    it 'calculates pay at mid rate' do
+      allow(hours).to receive(:mid_hours).and_return 2
+      expect(subject.mid_rate).to eq 16
+    end
+  end
+end
+
 describe 'CalculateHours' do
   let(:start) {17}; let(:endtime) {28}
   subject {CalculateHours.new(start, endtime)}
