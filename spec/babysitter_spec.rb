@@ -67,17 +67,17 @@ describe 'BabySit' do
     end
   end
 
-  xdescribe '#round_hours' do
-    subject {BabySit.new(17.6, 22.4)}
+  describe '#round_hours' do
+    let(:start) {12.4}; let(:endtime) {18.7}
 
     it 'round hours for calculating pay; start' do
-      subject.round_hours
-      expect(get_var_from_hours '@start').to eq 18
+      subject.round_hours; hours = subject.hours
+      expect(hours.start).to eq 12
     end
 
     it 'round hours for calculating pay; endtime' do
-      subject.round_hours
-      expect(get_var_from_hours '@endtime').to eq 22
+      subject.round_hours; hours = subject.hours
+      expect(hours.endtime).to eq 19
     end
   end
 end
