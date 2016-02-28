@@ -5,6 +5,7 @@ MID_RATE = 8
 END_RATE = 16
 
 class BabySit
+  # attr_reader :start, :endtime
   def initialize start, endtime
     @start, @endtime = start, endtime
     @hours = CalculateHours.new(start, endtime)

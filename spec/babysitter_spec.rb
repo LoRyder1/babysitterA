@@ -1,3 +1,9 @@
+# using subject.instance_variable_set is a code smell
+# use let when you need to instead
+# using .send method to access private methods is indicative of a design problem
+# or could maybe the method should be public or don't test that because it is just
+# a implementation detail
+
 def set_var var, value
   subject.instance_variable_set(var.to_sym, value)
 end
@@ -12,6 +18,11 @@ end
 
 describe 'BabySit' do
   let(:hour) {double 'hour'}
+  let(:hour) {double 'hour'}
+  # let(:start) {17}
+  # let(:endtime) {28}
+
+  # subject {BabySit.new(start, endtime)}
   subject {BabySit.new(hour, hour)}
 
   def set_obj_var classname, method, value
@@ -25,12 +36,16 @@ describe 'BabySit' do
   describe '#valid_schedule' do
 
     it 'invalid schedule earlier than 5pm' do
+      # let(:start) {16}
+      # let(:endtime) {22}
+      # binding.pry
       set_var '@start', 16; set_var '@endtime', 22
       expect(subject.valid_schedule?).to eq false
     end
 
     it 'invalid schedule if leave is later than 4am' do
-      set_var '@start', 17; set_var '@endtime', 29
+      # set_var '@start', 17; set_var '@endtime', 29
+      let(:endtime) {29}
       expect(subject.valid_schedule?).to eq false
     end
 
