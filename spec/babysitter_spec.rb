@@ -10,8 +10,8 @@ describe 'BabySit' do
     allow_any_instance_of(classname).to receive(method.to_sym).and_return value 
   end
 
-  context 'expect 2 arguments' do
-    it { expect(subject.method(:initialize).arity).to eq 2 }
+  it 'takes in 2 arguments' do
+    expect(subject.method(:initialize).arity).to eq 2
   end
 
   describe '#valid_schedule?' do
@@ -31,39 +31,14 @@ describe 'BabySit' do
     end
   end
 
-  xdescribe '#standard_rate_pay' do
-
-    it 'calculate pay at standard rate' do
-      set_obj_var CalculateHours, 'early_hours', 5
-      expect(subject.send(:standard_rate_pay)).to eq 60
-    end
-  end
-
-  xdescribe '#mid_rate_pay' do
-
-    it 'calculates pay at mid rate' do
-      set_obj_var CalculateHours, 'mid_hours', 2
-      expect(subject.send(:mid_rate_pay)).to eq 16
-    end
-  end
-
-  xdescribe '#end_rate_pay' do
-
-    it 'calculates pay at end rate' do
-      set_obj_var CalculateHours, 'end_hours', 4
-      expect(subject.send(:end_rate_pay)).to eq 64
-    end
-  end
-
-  xdescribe '#calculate_pay' do
-
-    def set_diff_pay x, y, z
-      allow(subject).to receive_messages(standard_rate_pay: x, mid_rate_pay: y, end_rate_pay: z)
+  describe '#calculate_pay' do
+    def set_ratepay x, y, z
+      allow(subject.ratepay).to receive_messages(standard_rate: x, mid_rate: y, overnight_rate: z)
     end
 
     it 'calculate total pay' do
-      set_diff_pay 60, 16, 64
-      expect(subject.calculate_pay).to eq 140
+      set_ratepay 50, 25, 74
+      expect(subject.calculate_pay).to eq 149
     end
   end
 
@@ -139,20 +114,6 @@ describe 'CalculateHours' do
   describe '#end_hours' do
     it 'calculates midnight to end' do
       expect(subject.overnight_hours).to eq 4
-    end
-  end
-
-  describe '#round_hours' do
-    let(:start) {12.4}; let(:endtime) {18.7}
-
-    it 'rounds start to nearest hour' do
-      subject.round_hours
-      expect(subject.start).to eq 12
-    end
-
-    it 'rounds endtime to nearest hour' do
-      subject.round_hours
-      expect(subject.endtime).to eq 19
     end
   end
 end
