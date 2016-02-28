@@ -59,7 +59,7 @@ class CalculateHours
   end
 
   def early_hours
-    BEDTIME - @start
+    BEDTIME - start
   end
 
   def mid_hours
@@ -67,6 +67,6 @@ class CalculateHours
   end
 
   def overnight_hours
-    @endtime - MIDNIGHT
+    endtime - MIDNIGHT
   end
 end
