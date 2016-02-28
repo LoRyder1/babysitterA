@@ -47,6 +47,7 @@ class RatePay
 end
 
 class CalculateHours
+  attr_reader :start, :endtime
   def initialize start, endtime
     @start, @endtime = start, endtime
   end

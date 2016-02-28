@@ -108,16 +108,17 @@ describe 'CalculateHours' do
     end
   end
 
-  xdescribe '#round_hours' do
+  describe '#round_hours' do
+    let(:start) {12.4}; let(:endtime) {18.7}
 
     it 'rounds start to nearest hour' do
-      set_var '@start', 12.4; set_var '@endtime', 0; subject.round_hours
-      expect(get_var '@start').to eq 12
-    end 
+      subject.round_hours
+      expect(subject.start).to eq 12
+    end
 
     it 'rounds endtime to nearest hour' do
-      set_var '@endtime', 18.7; set_var '@start', 0; subject.round_hours
-      expect(get_var '@endtime').to eq 19
+      subject.round_hours
+      expect(subject.endtime).to eq 19
     end
   end
 end
