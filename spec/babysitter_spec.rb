@@ -91,29 +91,24 @@ describe 'CalculateHours' do
   end
 
   describe '#early_hours' do
-
     it 'calculates hours to bedtime' do
-      set_var '@start', 17
       expect(subject.early_hours).to eq 5
     end
   end
 
   describe '#mid_hours' do
-
     it 'calculates bedtime to midnight' do
       expect(subject.mid_hours).to eq 2
     end
   end
 
   describe '#end_hours' do
-
     it 'calculates midnight to end' do
-      set_var '@endtime', 28
-      expect(subject.end_hours).to eq 4
+      expect(subject.overnight_hours).to eq 4
     end
   end
 
-  describe '#round_hours' do
+  xdescribe '#round_hours' do
 
     it 'rounds start to nearest hour' do
       set_var '@start', 12.4; set_var '@endtime', 0; subject.round_hours
